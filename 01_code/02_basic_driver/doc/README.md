@@ -3,7 +3,7 @@
  * @Email: haixuanwoTxh@gmail.com
  * @Date: 2024-04-15 17:05:30
  * @LastEditors: Clark
- * @LastEditTime: 2024-04-15 17:16:06
+ * @LastEditTime: 2024-04-16 14:31:22
  * @Description: file content
 -->
 
@@ -14,6 +14,9 @@
 
 - 1、传统方法
 驱动程序代码中写死硬件资源, 代码简单/不易扩展
+file_operations
+class_create
+device_create
 
 - 2、总线设备驱动模型
 把驱动程序分为两部分
@@ -40,6 +43,32 @@ platform_driver：分配/设置/注册file_operations结构体
 ② 看主芯片手册，确定寄存器操作方法：哪些寄存器？哪些位？地址是？
 ③ 编写驱动：先写框架，再写硬件操作的代码
 
+# IMX6ULL LED 驱动程序编写
+- 使能power/clock control
+- 复用pin mode
+- 输入或输出
+- 值
 
 
+关闭出厂的驱动
+echo none > /sys/class/leds/sys-led/trigger
+
+## APP读按键
+- 查询方式
+- 休眠-唤醒方式
+- poll 方式
+- 异步通知方式
+
+## 驱动开发基本技能
+- 中断
+- 休眠
+- 唤醒
+- poll 等机制
+
+## APP开发基本技能
+- 阻塞
+- 非阻塞
+- 休眠
+- poll
+- 异步通知
 

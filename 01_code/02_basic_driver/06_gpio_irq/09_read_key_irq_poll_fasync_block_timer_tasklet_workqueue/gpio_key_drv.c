@@ -123,7 +123,7 @@ static void key_work_func(struct work_struct *work)
 
 	val = gpiod_get_value(gpio_key->gpiod);
 
-	printk("key_work_func: the process is %s pid %d\n",current->comm, current->pid);	
+	printk("key_work_func: the process is %s pid %d\n",current->comm, current->pid);
 	printk("key_work_func key %d %d\n", gpio_key->gpio, val);
 }
 
@@ -136,11 +136,11 @@ static ssize_t gpio_key_drv_read (struct file *file, char __user *buf, size_t si
 
 	if (is_key_buf_empty() && (file->f_flags & O_NONBLOCK))
 		return -EAGAIN;
-	
+
 	wait_event_interruptible(gpio_key_wait, !is_key_buf_empty());
 	key = get_key();
 	err = copy_to_user(buf, &key, 4);
-	
+
 	return 4;
 }
 
@@ -190,7 +190,7 @@ static int gpio_key_probe(struct platform_device *pdev)
 	int count;
 	int i;
 	enum of_gpio_flags flag;
-		
+
 	printk("%s %s line %d\n", __FILE__, __FUNCTION__, __LINE__);
 
 	count = of_gpio_count(node);
@@ -202,7 +202,7 @@ static int gpio_key_probe(struct platform_device *pdev)
 
 	gpio_keys_100ask = kzalloc(sizeof(struct gpio_key) * count, GFP_KERNEL);
 	for (i = 0; i < count; i++)
-	{		
+	{
 		gpio_keys_100ask[i].gpio = of_get_gpio_flags(node, i, &flag);
 		if (gpio_keys_100ask[i].gpio < 0)
 		{
@@ -238,9 +238,9 @@ static int gpio_key_probe(struct platform_device *pdev)
 	}
 
 	device_create(gpio_key_class, NULL, MKDEV(major, 0), NULL, "100ask_gpio_key"); /* /dev/100ask_gpio_key */
-        
+
     return 0;
-    
+
 }
 
 static int gpio_key_remove(struct platform_device *pdev)
@@ -285,11 +285,11 @@ static struct platform_driver gpio_keys_driver = {
 static int __init gpio_key_init(void)
 {
     int err;
-    
+
 	printk("%s %s line %d\n", __FILE__, __FUNCTION__, __LINE__);
-	
-    err = platform_driver_register(&gpio_keys_driver); 
-	
+
+    err = platform_driver_register(&gpio_keys_driver);
+
 	return err;
 }
 
