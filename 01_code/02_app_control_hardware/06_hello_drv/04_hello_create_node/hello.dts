@@ -1,0 +1,11 @@
+
+/* arch/arm/boot/dts/100ask_imx6ull-14x14.dts */
+
+/ {
+    model = "Freescale i.MX6 ULL 14x14 EVK Board";
+    compatible = "fsl,imx6ull-14x14-evk", "fsl,imx6ull";
+
+    hello {
+       compatible = "100ask,hello";
+       version = "ver123456";
+    };

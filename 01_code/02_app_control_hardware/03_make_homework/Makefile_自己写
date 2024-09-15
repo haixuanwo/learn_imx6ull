@@ -1,0 +1,8 @@
+
+hello: main.o a.o b.o c.o
+	gcc -o $@ $^
+
+%.o : %.c
+	gcc -I include -c -o $@ $^
+
+
