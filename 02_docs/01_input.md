@@ -3,7 +3,7 @@
  * @Email: haixuanwoTxh@gmail.com
  * @Date: 2024-03-31 12:09:03
  * @LastEditors: Clark
- * @LastEditTime: 2024-04-15 11:20:47
+ * @LastEditTime: 2024-09-15 10:32:59
  * @Description: file content
 -->
 
@@ -11,7 +11,7 @@
 
 ![RUNOOB 图标](pics/1_input_system_block_diagram.png "RUNOOB")
 
-hexdeump /dev/input/event0
+hexdump /dev/input/event0
 
 # 一、什么是输入系统
 - 先来了解什么是输入设备？

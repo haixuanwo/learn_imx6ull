@@ -7,12 +7,11 @@
 # 注意: 不同的开发板不同的编译器上述3个环境变量不一定相同,
 #       请参考各开发板的高级用户使用手册
 
-# KERN_DIR = /home/book/100ask_roc-rk3399-pc/linux-4.4
 KERN_DIR = /home/book/100ask_imx6ull-sdk/Linux-4.9.88
 
 all:
 	make -C $(KERN_DIR) M=`pwd` modules
-	$(CROSS_COMPILE)gcc -o button_test button_test.c
+	$(CROSS_COMPILE)gcc -o ledtest ledtest.c
 
 clean:
 	make -C $(KERN_DIR) M=`pwd` modules clean
@@ -25,5 +24,6 @@ clean:
 # obj-m += ab.o
 
 
-obj-m	+= button_drv.o
-obj-m	+= board_xxx.o
+
+obj-m += leddrv.o chip_demo_gpio.o board_A_led.o
+

@@ -1,4 +1,14 @@
+/*
+ * @Author: Clark
+ * @Email: haixuanwoTxh@gmail.com
+ * @Date: 2024-09-15 15:49:06
+ * @LastEditors: Clark
+ * @LastEditTime: 2024-09-15 15:51:47
+ * @Description: file content
+ */
+
 #include <linux/module.h>
+
 #include <linux/fs.h>
 #include <linux/errno.h>
 #include <linux/miscdevice.h>
@@ -28,35 +38,30 @@ static struct resource resources[] = {
                 .flags = IORESOURCE_IRQ,
                 .name = "100ask_led_pin",
         },
-		// {
-		// 		.start = GROUP_PIN(5,8),
-		// 		.flags = IORESOURCE_IRQ,
-		// 		.name = "100ask_led_pin",
-		// },
 };
 
 
 static struct platform_device board_A_led_dev = {
-		.name = "100ask_led",
-		.num_resources = ARRAY_SIZE(resources),
-		.resource = resources,
-		.dev = {
-				.release = led_dev_release,
-		 },
+        .name = "100ask_led",
+        .num_resources = ARRAY_SIZE(resources),
+        .resource = resources,
+        .dev = {
+                .release = led_dev_release,
+         },
 };
 
 static int __init led_dev_init(void)
 {
-	int err;
+    int err;
 
-	err = platform_device_register(&board_A_led_dev);
+    err = platform_device_register(&board_A_led_dev);
 
-	return 0;
+    return 0;
 }
 
 static void __exit led_dev_exit(void)
 {
-	platform_device_unregister(&board_A_led_dev);
+    platform_device_unregister(&board_A_led_dev);
 }
 
 module_init(led_dev_init);

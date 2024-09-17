@@ -40,7 +40,7 @@ static ssize_t button_read (struct file *file, char __user *buf, size_t size, lo
 	unsigned int minor = iminor(file_inode(file));
 	char level;
 	int err;
-	
+
 	level = p_button_opr->read(minor);
 	err = copy_to_user(buf, &level, 1);
 	return 1;
@@ -85,7 +85,7 @@ int button_init(void)
 	button_class = class_create(THIS_MODULE, "100ask_button");
 	if (IS_ERR(button_class))
 		return -1;
-	
+
 	return 0;
 }
 
@@ -98,5 +98,3 @@ void button_exit(void)
 module_init(button_init);
 module_exit(button_exit);
 MODULE_LICENSE("GPL");
-
-

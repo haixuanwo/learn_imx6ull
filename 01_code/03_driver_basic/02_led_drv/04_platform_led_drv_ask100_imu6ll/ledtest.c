@@ -1,11 +1,3 @@
-/*
- * @Author: Clark
- * @Email: haixuanwoTxh@gmail.com
- * @Date: 2024-09-16 22:21:55
- * @LastEditors: Clark
- * @LastEditTime: 2024-09-16 22:22:07
- * @Description: file content
- */
 
 #include <sys/types.h>
 #include <sys/stat.h>
@@ -15,18 +7,18 @@
 #include <string.h>
 
 /*
- * ./button_test /dev/100ask_button0
- *
+ * ./ledtest /dev/100ask_led0 on
+ * ./ledtest /dev/100ask_led0 off
  */
 int main(int argc, char **argv)
 {
 	int fd;
-	char val;
-
+	char status;
+	
 	/* 1. 判断参数 */
-	if (argc != 2)
+	if (argc != 3) 
 	{
-		printf("Usage: %s <dev>\n", argv[0]);
+		printf("Usage: %s <dev> <on | off>\n", argv[0]);
 		return -1;
 	}
 
@@ -39,10 +31,20 @@ int main(int argc, char **argv)
 	}
 
 	/* 3. 写文件 */
-	read(fd, &val, 1);
-	printf("get button : %d\n", val);
-
+	if (0 == strcmp(argv[2], "on"))
+	{
+		status = 1;
+		write(fd, &status, 1);
+	}
+	else
+	{
+		status = 0;
+		write(fd, &status, 1);
+	}
+	
 	close(fd);
-
+	
 	return 0;
 }
+
+
